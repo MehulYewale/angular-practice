@@ -3,18 +3,98 @@
   <h1>
     Welcome to {{title}}!
   </h1>
-  <img width="300" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
 </div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
+
+<br>
+	<i> Interpolation -- 2 + 2 : {{ 2 + 2 }} </i>
+<br>
+	<button [attr.aria-label]="help"> Attribute binding </button>
+<br><br>
+
+Two way Data binding : 
+
+Mame : <input [(ngModel)]="name"> <br><br>
+Name value from component:  {{name}}
+<br><br>
+Property binding : <input [disabled]="name"> <br><br>
+
+----------------------------------------------------------------------------------------------------------------------
+<br>  *ngFor and *ngIf
+<h3> Name : </h3>
+
+<ul>	
+  <li *ngFor="let name of namesList"> {{ name }}</li>
 </ul>
 
+<div *ngIf="namesList.length == 0"> No data found </div>
+
+------------------------------------------------------------------------------------------------------------------------
+<br>
+ngStyle only accept object type
+<br>
+ngClass accepts string, array, object, objExp
+<br>
+<br>
+
+<div [ngStyle]="{'color':'green', 'font-weight': 'bold'}"> This is in Green color</div>
+
+<br><br>
+<div [ngStyle]="[{'color':'yellow'}, {'font-weight': 'bold'}]"> This is in yellow color -- wrong style</div>
+
+<br><br>
+<div [ngStyle]="myStyle"> This is in yellow color ngStyle="myStyle"</div>
+
+ <button [style.font-size.em]="isSpecial ? 3 : 1" >Big</button>
+<button [style.font-size.%]="!isSpecial ? 150 : 50" >Small</button>
+-- style property name can be written in either dash-case, as shown above, or camelCase, such as fontSize
+
+<br><br>
+<div [style.color]="'red'"> This is in Red color  style.color="'red'"</div>
+
+<br><br>
+<div ngClass="temp">ngClass attributes</div>
+
+<br><br>
+<div ngClass="first second"> multiple ngClass attributes2</div>
+
+<br><br>
+{{"thirdClass =" + thirdClass}}
+<div [ngClass]="{'first': true, 'second': false, 'third': thirdClass}"> multiple ngClass attributes3</div>
+
+<br><br>
+<div [ngClass]="{'first second': true}"> multiple ngClass attributes4  object - 'first second': true </div>
+
+<br><br>
+<div [ngClass]="['first', 'second']"> multiple ngClass attributes5  array 'first', 'second'</div>
+<br><br>
+<div [class.color]="true"> This is in class.color=true</div>
+
+<br><br>
+{{"thirdClass =" + thirdClass}}
+<div [ngClass]="{'third': thirdClass? true : false}"> thirdClass conditional ?</div>
+
+
+------------------------------------------------------------------------------------------------------------
+
+<p>
+  directive works!
+</p>
+
+<div [displayCss]="true" (onDblClick)="changeInText($event)"> Click on this elements </div>
+<!-- $event keyword needs to put here to send data back to componnent -->
+<br>
+<br>
+
+<div displayCss [display2]="myone"> Click here --- without [] bracket directive</div>
+
+<br>
+<br>
+<div [displayCss]="false"> Click on this elements to hide </div>
+---------------------------------------------------------------------------------------------------------------
+<ng-container *ngIf="1 < 2 ? true : false">
+{{ myValue }} 
+<br>
+<app-custom [inputValue]="myValue" (methodToCall)="ngOnChanges()"></app-custom>
+<!-- here only if myvalue got chnaged in parent component then ngOnChanges gets called (if myValue changing from app-custom component will not get called)-->
+</ng-container>
+  
